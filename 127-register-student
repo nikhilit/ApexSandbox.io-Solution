@@ -1,0 +1,10 @@
+public String registerStudent(String name, String phone, String email) {
+    apxio__Student__c sc = new apxio__Student__c();
+    sc.Name = name;
+    sc.apxio__Phone__c = phone;
+    sc.apxio__Email__c = email;
+    insert sc;
+    apxio__Student__c recordStudent =[SELECT ID, apxio__Registration_Number__c From apxio__Student__c where Id =: sc.Id];
+
+    return recordStudent.apxio__Registration_Number__c;
+}
