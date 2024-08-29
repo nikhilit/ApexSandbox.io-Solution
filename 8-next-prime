@@ -1,0 +1,25 @@
+public Integer nextPrime(Integer num) {
+    num++;
+    while(!prime(num))
+    {
+        num++;
+    }
+    return num;
+}
+
+static Boolean prime(Integer n)
+{
+    Integer count=0;
+    for(Integer i=1;i<=n;i++)
+    {
+        if(math.mod(n,i)==0)
+        {
+            count++;
+        }
+    }
+    if(count==2)
+    {
+        return true;
+    }
+    return false;
+}
