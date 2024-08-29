@@ -1,17 +1,30 @@
 public Id classFromCourse(String courseName) {
-List<apxio__Course__c> course = [Select Id, Name from apxio__Course__c where Name=:courseName];
+    List<apxio__Course__c> courseList = [SELECT Id, Name
 
-if(course. size()>0){
-    apxio__Class__c classname = new apxio__Class__c();
-    classname.apxio__Course__c = course[0].Id;
-    classname.Name = course[0].Name;
-    insert classname;
-    return classname.Id ;
+                                           FROM apxio__Course__c
 
-}else{
+                                          WHERE Name = :courseName
 
-    return null;
+                                          LIMIT 1];
 
-}
+    if (courseList.size()==0){
+
+        //No matching courses
+
+        return null;
+
+    } else {
+
+        apxio__Class__c newClass = new apxio__Class__c();
+
+        newClass.Name = courseList[0].Name;
+
+        newClass.apxio__Course__c = courseList[0].Id;
+
+        insert newClass;
+
+        return newClass.Id;
+
+    }
 
 }
