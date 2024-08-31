@@ -3,8 +3,8 @@ public void setParent(Account acc, Contact con, Opportunity opp) {
     {
         acc.id=con.Accountid;
         acc.id=opp.Accountid;
+         return true;
     }
-    return true;
+    return false;
 
 }
-return false;
